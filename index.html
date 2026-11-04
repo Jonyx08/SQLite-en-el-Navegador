@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQLite Browser - CRUD de usuarios</title>
+  <link rel="stylesheet" href="src/styles/styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🗄️ SQLite en el Navegador</h1>
+      <p>CRUD con Node.js, SQLite y TypeScript</p>
+    </header>
+
+    <section id="authSection" class="form-section" hidden>
+      <h2>Acceso</h2>
+      <form id="authForm" class="auth-form">
+        <input type="text" id="authName" placeholder="Nombre completo" autocomplete="name" maxlength="100">
+        <input type="email" id="authEmail" placeholder="correo@ejemplo.com" autocomplete="email" required maxlength="254">
+        <input type="password" id="authPassword" placeholder="Contraseña (mínimo 10 caracteres)" autocomplete="current-password" required minlength="10" maxlength="128">
+        <button id="authSubmit" type="submit">Iniciar sesión</button>
+      </form>
+      <button id="authToggle" class="link-button" type="button">¿No tienes cuenta? Regístrate</button>
+      <div id="authMessage" class="message" role="status" aria-live="polite"></div>
+    </section>
+
+    <section id="appSection" hidden>
+      <div class="account-bar">
+        <span id="accountName"></span>
+        <button id="logout" class="secondary-button" type="button">Cerrar sesión</button>
+      </div>
+
+      <section class="form-section">
+        <h2>Agregar usuario</h2>
+        <form id="userForm" class="user-form">
+          <input type="text" id="name" placeholder="Nombre completo" autocomplete="name" maxlength="100" required>
+          <input type="email" id="email" placeholder="correo@ejemplo.com" autocomplete="email" maxlength="254" required>
+          <button type="submit">➕ Agregar Usuario</button>
+        </form>
+        <div id="message" class="message" role="status" aria-live="polite"></div>
+      </section>
+
+      <section class="table-section">
+        <div class="table-heading">
+          <h2>Usuarios registrados</h2>
+          <button id="exportCsv" class="secondary-button" type="button">Exportar CSV</button>
+        </div>
+        <div class="table-tools">
+          <input type="search" id="search" placeholder="Buscar por nombre o email" aria-label="Buscar por nombre o email">
+          <label for="pageSize">Resultados por página</label>
+          <select id="pageSize">
+            <option value="5">5</option>
+            <option value="10" selected>10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+          </select>
+        </div>
+        <p id="listStatus" class="list-status" role="status" hidden></p>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr><th>ID</th><th>Nombre</th><th>Email</th><th>Acciones</th></tr>
+            </thead>
+            <tbody id="userTableBody"></tbody>
+          </table>
+        </div>
+        <nav id="pagination" class="pagination" aria-label="Paginación" hidden>
+          <button id="previousPage" class="secondary-button" type="button">Anterior</button>
+          <span id="pageInfo" data-page="1"></span>
+          <button id="nextPage" class="secondary-button" type="button">Siguiente</button>
+        </nav>
+      </section>
+    </section>
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
