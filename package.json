@@ -8,10 +8,10 @@
   },
   "scripts": {
     "dev": "concurrently -k \"pnpm dev:server\" \"pnpm dev:client\"",
-    "dev:server": "node --watch --experimental-strip-types server/index.ts",
+    "dev:server": "node --watch --experimental-strip-types src/server/index.ts",
     "dev:client": "vite",
     "build": "tsc && tsc -p tsconfig.server.json && vite build",
-    "start": "node --experimental-strip-types server/index.ts",
+    "start": "node --experimental-strip-types src/server/index.ts",
     "preview": "concurrently -k \"pnpm start\" \"vite preview\""
   },
   "devDependencies": {
